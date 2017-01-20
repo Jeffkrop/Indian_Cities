@@ -1,0 +1,37 @@
+---
+title: "R Notebook"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+
+
+```{r, warning=FALSE}
+library(splitstackshape)
+library(plyr)
+setwd("/Users/jeffkropelnicki/Documents/R_codes/kaggle/top_indian_cities")
+```
+
+load data   
+```{r}
+indiancities <- read.csv("/Users/jeffkropelnicki/Documents/R_codes/kaggle/top_indian_cities/cities_r2.csv")
+```
+
+creat two columns for the location column.    
+```{r}
+Updated_indiancities <- cSplit(indiancities, "location", ",", stripWhite = FALSE)
+```   
+   
+Rename the new columns   
+```{r}
+Indian_Cities <- rename(Updated_indiancities, c("location_1" = "latitude", "location_2" = "longitude" ))
+```   
+save to csv
+```{r}
+write.csv(Indian_Cities, file = "Indian_Cities.csv")
+```
+
+
+
+
